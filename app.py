@@ -1,100 +1,169 @@
 import streamlit as st
 
-# Configuration de la page pour un look pro
+# Configuration de la page
 st.set_page_config(page_title="L'Art de l'Éloquence", page_icon="⚖️", layout="wide")
 
-# --- STYLE CSS POUR LES FICHES ---
+# --- STYLE CSS PERSONNALISÉ ---
 st.markdown("""
     <style>
     .card {
         background-color: #ffffff;
-        padding: 1.5rem;
-        border-radius: 10px;
-        border-left: 5px solid #1E3A8A;
-        box-shadow: 2px 2px 15px rgba(0,0,0,0.05);
-        margin-bottom: 1rem;
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 6px solid #1E3A8A;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
     }
-    .sens { color: #1E3A8A; font-weight: bold; }
-    .exemple { color: #4B5563; font-style: italic; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px; }
+    .sens { color: #1E3A8A; font-weight: bold; font-size: 1.1em; }
+    .exemple { color: #374151; font-style: italic; background: #f9fafb; padding: 10px; border-radius: 5px; margin-top: 10px; }
+    .conseil-pro { background-color: #fff7ed; border: 1px dashed #ed8936; padding: 15px; border-radius: 10px; color: #9a3412; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- NAVIGATION ---
-st.sidebar.title("📚 Ma Bibliothèque")
+# --- NAVIGATION LATÉRALE ---
+st.sidebar.title("💎 Menu de Maîtrise")
 menu = [
-    "Expressions Idiomatiques", 
-    "Connecteurs & Transitions", 
-    "Convaincre & Négocier", 
-    "Rhétorique Juridique", 
-    "La Métaphore Physique",
-    "➕ Ajouter une Note"
+    "Expressions Idiomatiques",
+    "Connecteurs Logiques",
+    "Persuasion & Influence",
+    "Rhétorique Juridique",
+    "Philosophie & Éloquence",
+    "La Métaphore Physique"
 ]
 choix = st.sidebar.radio("Navigation", menu)
 
-# --- FONCTION POUR AFFICHER UNE FICHE ---
-def afficher_fiche(titre, sens, exemple):
-    st.markdown(f"""
-        <div class="card">
-            <h3>{titre}</h3>
-            <p class="sens">🔍 Sens : {sens}</p>
-            <p class="exemple">💡 Exemple : {exemple}</p>
-        </div>
-    """, unsafe_allow_html=True)
+# --- FONCTIONS D'AFFICHAGE ---
+def fiche(titre, sens, exemple):
+    st.markdown(f"""<div class="card">
+        <h3>{titre}</h3>
+        <p class="sens">🔍 Sens : {sens}</p>
+        <p class="exemple">💡 Exemple : {exemple}</p>
+    </div>""", unsafe_allow_html=True)
 
-# --- CONTENU DES CATÉGORIES ---
+# --- CONTENU ---
 
 if choix == "Expressions Idiomatiques":
-    st.title("🗣️ Expressions Idiomatiques")
-    afficher_fiche("Avoir l'apanage de quelque chose", "Posséder un privilège exclusif ou une qualité propre à soi seul.", "La rigueur n'est pas l'apanage des mathématiciens.")
-    afficher_fiche("Sortir de ses gonds", "Perdre son sang-froid, se mettre violemment en colère.", "Devant tant d'injustice, il a fini par sortir de ses gonds.")
-    afficher_fiche("Une victoire à la Pyrrhus", "Une victoire obtenue au prix de pertes si lourdes qu'elle équivaut presque à une défaite.", "Il a gagné son procès, mais ses frais d'avocat l'ont ruiné.")
-    afficher_fiche("S'acquitter d'une tâche", "Accomplir, remplir une obligation ou un travail avec soin.", "Il s'est acquitté de sa mission avec un professionnalisme exemplaire.")
+    st.title("🗣️ Expressions Idiomatiques & Vocabulaire")
+    fiche("Avoir l'apanage de quelque chose", "Posséder un privilège exclusif ou une qualité propre à soi seul.", "La rigueur n'est pas l'apanage des mathématiciens.")
+    fiche("Sortir de ses gonds", "Perdre son sang-froid, se mettre violemment en colère.", "Devant tant d'injustice, il a fini par sortir de ses gonds.")
+    fiche("Une victoire à la Pyrrhus", "Une victoire obtenue au prix de pertes si lourdes qu'elle équivaut presque à une défaite.", "Il a gagné son procès, mais ses frais d'avocat l'ont ruiné : c'est une victoire à la Pyrrhus.")
+    fiche("S'acquitter d'une tâche", "Accomplir, remplir une obligation ou un travail avec soin.", "Il s'est acquitté de sa mission avec un professionnalisme exemplaire.")
+    fiche("Céder aux sirènes de quelque chose", "Se laisser séduire par une proposition attrayante mais potentiellement trompeuse ou dangereuse.", "Beaucoup de pays ont cédé aux sirènes du protectionnisme.")
+    
+    st.markdown("---")
+    st.subheader("Vocabulaire de situation")
+    st.warning("⚠️ Attention à la dégradation : *Canard boiteux, trahison, crédibilité détruite, qualité détériorée.*")
+    st.info("💡 À utiliser : *Besoin de cohérence, adoucir le ton, réagir au quart de tour, ce qui est certain.*")
 
-elif choix == "Connecteurs & Transitions":
-    st.title("🔗 L'Art de la Transition")
-    st.info("Utilisez ces connecteurs pour remplacer les 'euh...' et structurer votre pensée.")
+elif choix == "Connecteurs Logiques":
+    st.title("🔗 L'Art de lier les Idées")
     
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Introduire / Débuter")
-        st.write("- **Tout d'abord...**")
-        st.write("- **En premier lieu...** (Soutenu)")
+        st.subheader("🏁 Introduire")
+        st.write("- **Tout d'abord...** / **Pour commencer...**")
+        st.write("- **En premier lieu...** (Très soutenu)")
         st.write("- **À vrai dire...** (Avis personnel)")
-    with col2:
-        st.subheader("Gagner du temps")
+        
+        st.subheader("⏳ Gagner du temps")
         st.write("- **Il convient de préciser que...**")
+        st.write("- **Soulignons également que...**")
         st.write("- **Force est de constater que...**")
-        st.write("- **Autrement dit...** (Reformulation)")
+    
+    with col2:
+        st.subheader("➕ Ajouter / Nuancer")
+        st.write("- **De surcroît...** / **Par ailleurs...**")
+        st.write("- **Ceci étant dit...** / **Toutefois...**")
+        st.write("- **Néanmoins...** / **En revanche...**")
 
-elif choix == "Convaincre & Négocier":
-    st.title("🎯 Influence & Négociation")
-    afficher_fiche("L'Argument de la Nécessité", "Valider le problème avant de proposer la solution pour créer l'urgence.", "L'état des lieux est sans appel : le statu quo n'est plus une option viable.")
-    afficher_fiche("Le 'Nous' Stratégique", "Inclure l'autre dans la paternité de l'idée pour réduire la résistance.", "Dans l'intérêt de notre département, voici notre défi commun.")
-    st.success("💡 **Le conseil pro :** Le silence de 2 secondes donne une impression de maîtrise totale.")
+        st.subheader("🔚 Conclure")
+        st.write("- **En définitive...** / **Somme toute...**")
+        st.write("- **En résumé...**")
+
+    st.markdown("""<div class="conseil-pro">
+        <b>💡 Le Conseil "Pro" : Le silence stratégique</b><br>
+        Le secret des grands orateurs est de marquer une pause silencieuse de 2 secondes au lieu de dire "euh". 
+        Cela donne une impression de maîtrise et de réflexion.
+    </div>""", unsafe_allow_html=True)
+
+elif choix == "Persuasion & Influence":
+    st.title("🎯 Convaincre, Négocier & Apaiser")
+    
+    tab1, tab2, tab3 = st.tabs(["Négocier", "Apaiser", "Vendre une Idée"])
+    
+    with tab1:
+        st.subheader("L'assurance sans agression")
+        st.write("- **Il est manifeste que...** (Évidence logique)")
+        st.write("- **Porter à votre connaissance...** (Donne de l'importance)")
+        st.write("- **Sous réserve de...** (Condition diplomatique)")
+        st.write("- **À l'aune de...** (À la lumière de)")
+        
+    with tab2:
+        st.subheader("Reconnaître sans céder")
+        st.write("- **Je mesure pleinement votre préoccupation** (Empathie)")
+        st.write("- **Mettons de côté, pour un instant...** (Recentrer)")
+        st.write("- **Cherchons un terrain d'entente**")
+        st.info("💡 Technique du miroir : 'Si je vous ai bien suivi, votre priorité est...'")
+
+    with tab3:
+        st.subheader("Rendre le projet inévitable")
+        st.write("- **Le statu quo n'est plus une option viable.**")
+        st.write("- **L'état des lieux est sans appel.**")
+        st.write("- **Une solution pérenne / Approche modulaire.**")
+        st.success("🧠 Argument du 'Nous' : Ne dites pas 'Mon projet', dites 'Notre vision'.")
 
 elif choix == "Rhétorique Juridique":
-    st.title("⚖️ Rhétorique Juridique")
-    afficher_fiche("En l'espèce", "Expression reine pour ramener le débat aux faits précis du dossier.", "En l'espèce, la preuve du manquement n'est pas rapportée.")
-    afficher_fiche("Fraus omnia corrumpit", "La fraude corrompt tout. Puissant pour dénoncer la mauvaise foi.", "La signature a été obtenue par tromperie : fraus omnia corrumpit.")
-    afficher_fiche("Argument A Fortiori", "À plus forte raison. Si la règle s'applique à un cas simple, elle s'applique mieux au vôtre.", "Si l'accès est interdit aux vélos, il l'est a fortiori aux voitures.")
+    st.title("⚖️ Rhétorique & Droit")
+    
+    fiche("Il est constant que...", "S'utilise pour un fait que personne ne peut nier.", "Il est constant que le contrat a été signé librement.")
+    fiche("En l'espèce...", "Ramener le débat aux faits précis du dossier.", "En l'espèce, aucun retard n'a été constaté.")
+    fiche("Argument inopérant", "Argument qui n'a aucun impact juridique sur la solution.", "Ce point est vrai, mais il est inopérant en l'espèce.")
+    fiche("À titre subsidiaire", "Proposer une alternative si l'argument principal est rejeté.", "À titre subsidiaire, nous demandons une réduction de peine.")
+    
+    st.markdown("---")
+    st.subheader("🏛️ Adages Latins")
+    st.code("Actori incumbit probatio (La preuve incombe au demandeur)")
+    st.code("Fraus omnia corrumpit (La fraude corrompt tout)")
+    st.code("In dubio pro reo (Le doute profite à l'accusé)")
+
+elif choix == "Philosophie & Éloquence":
+    st.title("🏛️ Fondations Philosophiques")
+    st.subheader("La Triade d'Aristote")
+    st.write("1. **Ethos** (Crédibilité) : Qui êtes-vous pour parler ?")
+    st.write("2. **Logos** (Logique) : L'ossature de votre raisonnement.")
+    st.write("3. **Pathos** (Émotion) : Faire vibrer l'auditoire.")
+    
+    st.markdown("---")
+    st.subheader("Figures de Style")
+    st.table({
+        "Figure": ["Prétérition", "Anaphore", "Antithèse"],
+        "Définition": ["Dire qu'on ne va pas parler d'un sujet pour mieux le souligner", "Répétition d'un mot en début de phrase", "Opposer deux termes contraires"],
+        "Exemple": ["Je ne rappellerai pas son passé...", "C'est l'honneur d'un homme, c'est la vie d'une famille...", "La force des faibles."]
+    })
 
 elif choix == "La Métaphore Physique":
-    st.title("⚡ Physique & Convalescence")
-    st.warning("Utilisez les lois de l'électricité pour expliquer la guérison.")
-    afficher_fiche("Loi d'Ohm (U=R·I)", "Gérer la résistance. Si la résistance (fatigue) est haute, baissez l'intensité.", "Pour ne pas griller vos circuits, baissons l'intensité le temps que la résistance diminue.")
-    afficher_fiche("L'Effet Joule", "Éviter la surchauffe. Forcer trop tôt dissipe l'énergie en dégâts (inflammation).", "Restons en basse consommation pour éviter la surchauffe inflammatoire.")
-
-elif choix == "➕ Ajouter une Note":
-    st.title("📝 Ajouter une nouvelle expression")
-    st.write("Pour l'instant, ajoutez vos notes ici pour les copier plus tard dans votre fichier GitHub.")
-    titre_nouveau = st.text_input("Titre de l'expression")
-    sens_nouveau = st.text_area("Sens / Définition")
-    ex_nouveau = st.text_area("Exemple d'utilisation")
+    st.title("⚡ Électricité & Convalescence")
+    st.info("Réconcilier le corps humain avec les lois de la physique.")
     
-    if st.button("Générer le code pour GitHub"):
-        st.code(f'afficher_fiche("{titre_nouveau}", "{sens_nouveau}", "{ex_nouveau}")')
-        st.info("Copiez cette ligne et collez-la dans votre fichier app.py sur GitHub pour la sauvegarder définitivement.")
+    st.markdown("""
+    ### 1. Loi d'Ohm (U = R · I)
+    **Analogie :** Votre corps a une résistance (R) élevée pendant la maladie. Si vous maintenez une intensité (I) élevée, vous créez une surtension (U).
+    **Argument :** "Baissons l'intensité le temps que votre résistance diminue naturellement."
+
+    ### 2. Le Condensateur (τ = R · C)
+    **Analogie :** Vos réserves sont un condensateur vidé. La charge prend un temps incompressible.
+    **Argument :** "On ne demande pas à une batterie vide de démarrer un moteur instantanément."
+
+    ### 3. Loi de Joule (P = R · I²)
+    **Analogie :** L'énergie se dissipe en chaleur (inflammation) avec le carré de l'intensité.
+    **Argument :** "Chaque effort prématuré dissipe l'énergie nécessaire à la reconstruction."
+
+    ### 4. Court-Circuit & Isolation
+    **Analogie :** La convalescence est la phase de 'ré-isolation' de vos circuits.
+    **Argument :** "Le repos est l'isolant qui empêche le court-circuit général."
+    """)
 
 # --- FOOTER ---
 st.sidebar.markdown("---")
-st.sidebar.caption("Rosly - Expertise & Éloquence")
+st.sidebar.write("👤 **Utilisateur : Rosly**")
+st.sidebar.caption("République du Congo | Télécom & Éloquence")
