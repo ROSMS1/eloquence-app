@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Remplacez ceci par l'ID de votre feuille Google Sheets (se trouve dans l'URL)
-SHEET_ID = 'VOTRE_ID_DE_FEUILLE_ICI'
+SHEET_ID = '1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE'
 SHEET_NAME = 'Feuille1'
 URL = https://docs.google.com/spreadsheets/d/1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE/edit?usp=sharing
 
