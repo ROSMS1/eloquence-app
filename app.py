@@ -4,7 +4,7 @@ import pandas as pd
 # Remplacez ceci par l'ID de votre feuille Google Sheets (se trouve dans l'URL)
 SHEET_ID = '1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE'
 SHEET_NAME = 'MaBaseEloquence'
-URL = https://docs.google.com/spreadsheets/d/1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE/edit?usp=sharing
+URL = https://"https://docs.google.com/spreadsheets/d/1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE/gviz/tq?tqx=out:csv"
 
 st.set_page_config(page_title="L'Art de l'Éloquence", page_icon="⚖️")
 
