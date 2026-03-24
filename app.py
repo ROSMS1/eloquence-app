@@ -1,42 +1,93 @@
 import streamlit as st
 import pandas as pd
 
-# Remplacez ceci par l'ID de votre feuille Google Sheets (se trouve dans l'URL)
-SHEET_ID = '1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE'
-SHEET_NAME = 'MaBaseEloquence'
-URL = https://"https://docs.google.com/spreadsheets/d/1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE/gviz/tq?tqx=out:csv"
+# --- CONFIGURATION DE LA CONNEXION GOOGLE SHEETS ---
+# Votre ID de feuille extrait de l'URL
+SHEET_ID = "1RWQSre19ZmQl4rzxNcsIwvWlJuu_Nm9RMBKbBwPuYyE"
+# Cette URL permet à Python de lire la feuille comme un fichier CSV
+URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv"
 
-st.set_page_config(page_title="L'Art de l'Éloquence", page_icon="⚖️")
+# Configuration de l'affichage Streamlit
+st.set_page_config(page_title="L'Art de l'Éloquence", page_icon="⚖️", layout="wide")
 
-# Fonction pour charger les données (avec cache pour la rapidité)
-@st.cache_data(ttl=600) # Rafraîchit toutes les 10 minutes
+# --- STYLE CSS POUR LES FICHES ---
+st.markdown("""
+    <style>
+    .card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 6px solid #1E3A8A;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .sens { color: #1E3A8A; font-weight: bold; font-size: 1.1em; }
+    .exemple { color: #374151; font-style: italic; background: #f9fafb; padding: 10px; border-radius: 5px; margin-top: 10px; }
+    .categorie-tag { color: #6B7280; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+    """, unsafe_allow_html=True)
+
+# --- FONCTION DE CHARGEMENT DES DONNÉES ---
+@st.cache_data(ttl=300)  # Rafraîchit les données toutes les 5 minutes
 def load_data():
-    return pd.read_csv(URL)
+    try:
+        # Lecture du Google Sheet
+        data = pd.read_csv(URL)
+        # Nettoyage des noms de colonnes (enlève les espaces vides)
+        data.columns = [c.strip().lower() for c in data.columns]
+        return data
+    except Exception as e:
+        st.error(f"Erreur de connexion : {e}")
+        return None
 
-try:
-    df = load_data()
-    
+# --- EXECUTION ---
+df = load_data()
+
+if df is not None:
     st.sidebar.title("💎 Rosly Eloquence")
-    cat_list = ["Toutes"] + list(df['catégorie'].unique())
-    choix_cat = st.sidebar.selectbox("Catégorie", cat_list)
+    st.sidebar.markdown("---")
+    
+    # Menu de filtrage par catégorie
+    if 'catégorie' in df.columns:
+        liste_cat = ["Toutes"] + sorted(df['catégorie'].unique().tolist())
+        choix_cat = st.sidebar.selectbox("Choisir une catégorie", liste_cat)
+    else:
+        st.sidebar.warning("Attention : Colonne 'catégorie' non trouvée dans le Sheets.")
+        choix_cat = "Toutes"
 
-    st.title("📖 Ma Bibliothèque Connectée")
+    st.title("📖 Ma Bibliothèque d'Éloquence")
+    st.caption("Connectée en temps réel à Google Sheets")
 
-    # Filtrage
+    # Filtrage des données
     if choix_cat != "Toutes":
-        df = df[df['catégorie'] == choix_cat]
+        df_final = df[df['catégorie'] == choix_cat]
+    else:
+        df_final = df
 
     # Affichage des fiches
-    for index, row in df.iterrows():
-        with st.container():
-            st.markdown(f"""
-            <div style="background:white; padding:15px; border-radius:10px; border-left:5px solid #1E3A8A; margin-bottom:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
-                <small style="color:gray;">{row['catégorie']}</small>
-                <h3 style="margin:5px 0;">{row['titre']}</h3>
-                <p><b>🔍 Sens :</b> {row['sens']}</p>
-                <p style="font-style:italic; color:#444;"><b>💡 Exemple :</b> {row['exemple']}</p>
-            </div>
-            """, unsafe_allow_html=True)
+    if not df_final.empty:
+        for index, row in df_final.iterrows():
+            # On vérifie que les colonnes existent avant d'afficher
+            titre = row.get('titre', 'Sans titre')
+            sens = row.get('sens', 'Non défini')
+            exemple = row.get('exemple', 'Aucun exemple')
+            cat = row.get('catégorie', 'Général')
 
-except Exception as e:
-    st.error("Erreur de connexion à Google Sheets. Vérifiez l'URL et les droits de partage.")
+            st.markdown(f"""
+                <div class="card">
+                    <div class="categorie-tag">{cat}</div>
+                    <h3>{titre}</h3>
+                    <p class="sens">🔍 Sens : {sens}</p>
+                    <p class="exemple">💡 Exemple : {exemple}</p>
+                </div>
+            """, unsafe_allow_html=True)
+    else:
+        st.info("Aucune expression trouvée dans cette catégorie.")
+
+else:
+    st.warning("⚠️ Impossible de charger les données. Vérifiez que votre Google Sheet est partagé en 'Tous les utilisateurs disposant du lien : Lecteur'.")
+
+# --- FOOTER ---
+st.sidebar.markdown("---")
+st.sidebar.write(f"📍 **Lieu :** Pointe-Noire, Congo")
+st.sidebar.button("🔄 Rafraîchir les données")
