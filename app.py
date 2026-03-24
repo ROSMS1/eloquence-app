@@ -7,7 +7,7 @@ URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv"
 
 st.set_page_config(page_title="Rosly - L'Art de l'Éloquence", page_icon="⚖️", layout="wide")
 
-# --- BASE DE DONNÉES INITIALE (Vos expressions fixes) ---
+# --- BASE DE DONNÉES INITIALE ---
 expressions_fixes = [
     {"catégorie": "Idiomatique", "titre": "Avoir l'apanage de", "sens": "Posséder un privilège exclusif.", "exemple": "La rigueur n'est pas l'apanage des mathématiciens."},
     {"catégorie": "Idiomatique", "titre": "Sortir de ses gonds", "sens": "Perdre son sang-froid.", "exemple": "Il a fini par sortir de ses gonds."},
@@ -32,17 +32,23 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- CHARGEMENT DES NOUVELLES DONNÉES (Google Sheets) ---
+# --- CHARGEMENT DES DONNÉES GOOGLE SHEETS ---
 @st.cache_data(ttl=60)
 def load_remote_data():
     try:
         data = pd.read_csv(URL)
-        # Nettoyage : On force les noms de colonnes en minuscules et sans accents pour éviter les erreurs
-        data.columns = [c.strip().lower().replace('é', 'e') for c in data.columns]
-        # On renomme pour que ça corresponde au reste du code
-        if 'categorie' in data.columns:
-            data = data.rename(columns={'categorie': 'catégorie'})
-        return data.to_dict('records')
+        # Nettoyage des colonnes (minuscules, pas d'espaces)
+        data.columns = [str(c).strip().lower() for c in data.columns]
+        
+        # Renommage flexible
+        rename_dict = {'categorie': 'catégorie', 'category': 'catégorie', 'thème': 'catégorie'}
+        data = data.rename(columns=rename_dict)
+        
+        # On ne garde que les lignes qui ont au moins un titre
+        data = data.dropna(subset=['titre']) if 'titre' in data.columns else data
+        
+        # Conversion en liste de dictionnaires propre
+        return data.fillna("").to_dict('records')
     except:
         return []
 
@@ -53,30 +59,30 @@ toutes_expressions = expressions_fixes + remote_data
 # --- INTERFACE ---
 st.sidebar.title("💎 Rosly Eloquence")
 
-# Extraction sécurisée des catégories
-liste_categories = []
-for exp in toutes_expressions:
-    c = exp.get('catégorie', 'Général')
-    if c not in liste_categories:
-        liste_categories.append(c)
+# Extraction sécurisée et propre des catégories pour le menu
+liste_brute = [str(exp.get('catégorie', 'Général')).strip() for exp in toutes_expressions]
+# On enlève les doublons et les textes vides
+liste_categories = sorted(list(set([c for c in liste_brute if c and c != "nan"])))
 
-choix = st.sidebar.selectbox("Thématique", ["Toutes"] + sorted(liste_categories))
+choix = st.sidebar.selectbox("Thématique", ["Toutes"] + liste_categories)
 
 st.title("📖 Ma Bibliothèque d'Éloquence")
-st.write(f"Total : {len(toutes_expressions)} expressions disponibles.")
 
 # Affichage filtré
+count = 0
 for exp in toutes_expressions:
-    cat_actuelle = exp.get('catégorie', 'Général')
+    cat_actuelle = str(exp.get('catégorie', 'Général')).strip()
     if choix == "Toutes" or choix == cat_actuelle:
         st.markdown(f"""
             <div class="card">
                 <div class="cat-tag">{cat_actuelle}</div>
                 <h3 style="margin:5px 0;">{exp.get('titre', 'Expression')}</h3>
                 <p class="sens-text">🔍 {exp.get('sens', 'Définition...')}</p>
-                <p class="ex-text">💡 {exp.get('exemple', 'Exemple...')}</p>
+                <p class="ex-text">💡 <b>Exemple :</b> {exp.get('exemple', 'Aucun exemple disponible.')}</p>
             </div>
         """, unsafe_allow_html=True)
+        count += 1
 
+st.sidebar.write(f"📊 {count} expressions affichées")
 st.sidebar.markdown("---")
 st.sidebar.caption("Rosly - Pointe-Noire 🇨🇬")
