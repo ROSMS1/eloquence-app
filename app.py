@@ -32,6 +32,10 @@ h1,h2,h3{font-family:'Playfair Display',serif;}
 .section-header p{color:#BFDBFE;margin:6px 0 0;font-size:0.9em;}
 .stress-header{background:linear-gradient(135deg,#7C2D12 0%,#991B1B 100%);}
 .coach-header{background:linear-gradient(135deg,#14532D 0%,#166534 100%);}
+.story-header{background:linear-gradient(135deg,#4C1D95 0%,#6D28D9 100%);}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+.before-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px 16px;color:#991B1B;font-size:0.9em;}
+.after-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:14px 16px;color:#14532D;font-size:0.9em;}
 .discourse-card{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#E8D5B7;padding:30px 36px;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.25);margin-bottom:20px;border:1px solid #B8860B;}
 .discourse-body{line-height:1.9;font-size:1.02em;color:#EDE0C8;}
 .book-card{background:white;padding:22px 26px;border-radius:14px;border-top:5px solid #B8860B;box-shadow:0 3px 12px rgba(0,0,0,0.08);margin-bottom:18px;}
@@ -193,6 +197,98 @@ SOLUTIONS_NAT = [
 ]
 
 # ================================================================
+# STORYTELLING PROFESSIONNEL
+# ================================================================
+
+TECHNIQUES_RECIT = [
+    {
+        "num": "1",
+        "titre": "Créer un Crochet d'Ouverture",
+        "icone": "🪝",
+        "description": "Commencer par une question provocante ou une statistique frappante. L'audience décide en 8 secondes si elle va vous écouter. Votre première phrase est votre seule chance de conquérir l'attention.",
+        "avant": "Plusieurs packs de batteries étaient hors service, menaçant l'intégrité de la maison 4G.",
+        "apres": "Saviez-vous que la stabilité de tout un réseau 4G peut dépendre d'un simple composant de la taille d'une main ?",
+        "conseil": "Optez pour : une question rhétorique / une statistique surprenante / une image saisissante. Bannissez les formules d'entrée timides.",
+        "col": "purple",
+    },
+    {
+        "num": "2",
+        "titre": "Structurer en 3 Points (La Règle de 3)",
+        "icone": "📐",
+        "description": "Le cerveau humain mémorise naturellement les séries de trois. Un récit organisé en Problème → Action → Leçon crée une architecture mentale que l'auditeur peut suivre, retenir et reproduire.",
+        "avant": "J'ai remplacé la carte BMS, puis j'ai contacté les collègues, et ensuite j'ai géré la logistique.",
+        "apres": "1. Remplacement chirurgical de la carte BMS. 2. Leadership opérationnel en temps réel. 3. Maîtrise logistique malgré les contraintes géographiques.",
+        "conseil": "Annoncez toujours votre plan en début de discours : 'Je vais vous parler de trois choses...' — cela prépare le cerveau à recevoir l'information.",
+        "col": "blue",
+    },
+    {
+        "num": "3",
+        "titre": "Utiliser des Images Vivaces",
+        "icone": "🎨",
+        "description": "Remplacer le jargon technique par des descriptions accessibles et évocatrices. L'auditoire non technique doit visualiser le problème sans connaître la terminologie. Le concret bat toujours l'abstrait.",
+        "avant": "Le BMS a dysfonctionné, causant un déséquilibre des modules lithium-fer-phosphate.",
+        "apres": "Imaginez un système vital qui s'arrête brutalement, plongeant une zone stratégique dans le noir numérique.",
+        "conseil": "Technique de l'Hypotypose : décrivez la scène comme si l'auditeur était là. Faites-lui VOIR, pas seulement comprendre.",
+        "col": "teal",
+    },
+    {
+        "num": "4",
+        "titre": "Clarifier le Message Central",
+        "icone": "🎯",
+        "description": "Identifier dès le début la leçon principale. Un récit sans message central est une anecdote. Un récit avec message central est une démonstration. L'auditeur doit repartir avec UNE conviction gravée.",
+        "avant": "Cette expérience m'a appris beaucoup de choses sur le travail en équipe et la gestion technique.",
+        "apres": "Ce projet a gravé une conviction en moi : une expertise individuelle, aussi pointue soit-elle, reste vulnérable sans une intelligence collective orchestrée.",
+        "conseil": "Formulez votre message central en UNE phrase avant de construire votre récit. Tout doit converger vers cette phrase.",
+        "col": "gold",
+    },
+    {
+        "num": "5",
+        "titre": "Éviter les Formulations Passives",
+        "icone": "⚡",
+        "description": "Les verbes passifs effacent votre leadership et diluent l'impact. Chaque phrase doit montrer que VOUS avez agi, décidé, coordonné. La voix active transforme un rapport en démonstration de compétence.",
+        "avant": "J'ai dû porter de la réalité sur site avec mes collègues pour que la situation soit résolue.",
+        "apres": "J'ai coordonné directement avec mes collègues sur site pour aligner nos efforts en temps réel.",
+        "conseil": "Relisez votre texte et remplacez systématiquement : 'a été fait' → 'j'ai fait' / 'il a fallu' → 'j'ai décidé' / 'on a dû' → 'j'ai organisé'.",
+        "col": "orange",
+    },
+    {
+        "num": "6",
+        "titre": "Conclure par un Appel à l'Action",
+        "icone": "🚀",
+        "description": "Terminer en invitant l'audience à appliquer la leçon dans ses propres projets. Une conclusion sans appel à l'action est une occasion manquée. Le meilleur discours ne s'arrête pas à 'j'espère que c'est utile' — il déclenche une action.",
+        "avant": "En conclusion, la collaboration est importante dans notre travail au quotidien.",
+        "apres": "Dans vos prochains projets, cherchez à créer cette fluidité d'échange — car c'est dans la collaboration que réside la véritable résilience de nos infrastructures.",
+        "conseil": "Formule d'appel à l'action : 'Dès demain...' / 'Dans votre prochain projet...' / 'La prochaine fois que...'. Rendez-le concret et immédiat.",
+        "col": "green",
+    },
+]
+
+RECIT_MODELE = {
+    "titre": "Le Pouvoir de l'Intelligence Collective : Urgence au Site de Taille",
+    "accroche": "Saviez-vous que la stabilité de tout un réseau 4G peut dépendre d'un simple composant de la taille d'une main ? Imaginez un système vital qui s'arrête brutalement, plongeant une zone stratégique dans le noir numérique et mettant en péril l'intégralité d'une installation critique.",
+    "probleme": {
+        "titre": "1. Le Problème : Une défaillance critique",
+        "corps": "Nous avons été confrontés à une situation d'urgence majeure : plusieurs packs de batteries étaient hors service, menaçant de couper instantanément l'alimentation du site. En tant que technicien, mon objectif immédiat était de restaurer la continuité énergétique, mais le véritable défi n'était pas seulement technique : il s'agissait de maintenir la précision sous une pression extrême.",
+        "technique": "CROCHET + HYPOTYPOSE",
+    },
+    "action": {
+        "titre": "2. L'Action : Une intervention coordonnée en trois étapes",
+        "corps": [
+            ("🔧 Le Remplacement Chirurgical", "Remplacement minutieux de la carte de gestion des batteries (BMS), une opération de haute précision où l'erreur n'avait pas sa place."),
+            ("👥 Le Leadership Opérationnel", "Coordination directe avec les collègues sur site pour aligner les efforts en temps réel, transformant des tâches isolées en une intervention fluide."),
+            ("📦 La Maîtrise Logistique", "Pilotage de l'acheminement des pièces de rechange malgré des contraintes géographiques sévères, garantissant que le matériel arrive exactement au moment critique."),
+        ],
+        "technique": "RÈGLE DE 3 + VOIX ACTIVE",
+    },
+    "lecon": {
+        "titre": "3. La Leçon Apprise : L'expertise ne suffit pas",
+        "corps": "Grâce à cette synergie entre expertise technique et communication fluide, nous avons rétabli l'intégrité du système dans les délais impartis. Ce projet a gravé une conviction en moi : une expertise individuelle, aussi pointue soit-elle, reste vulnérable sans une intelligence collective orchestrée.",
+        "technique": "MESSAGE CENTRAL",
+    },
+    "appel": "Dans vos prochains projets, ne vous contentez pas de résoudre le problème technique. Cherchez à créer cette fluidité d'échange ; car c'est dans la collaboration que réside la véritable résilience de nos infrastructures.",
+}
+
+# ================================================================
 # GOOGLE SHEETS
 # ================================================================
 @st.cache_data(ttl=60)
@@ -225,6 +321,7 @@ PAGES = {
     "🎭 Figures de Style":"figures",
     "🏛️ Méthode Rhétorique":"methode",
     "📜 Discours Modèle Annoté":"discours",
+    "🎙️ Storytelling Professionnel":"storytelling",
     "📚 Bibliothèque des Maîtres":"biblio",
     "── CONFIANCE EN SOI ──":"sep",
     "💪 Symptômes & Causes":"coaching_bases",
@@ -243,7 +340,8 @@ choice = st.sidebar.radio("Navigation", choices, label_visibility="collapsed")
 page = PAGES.get(choice,"accueil")
 
 total = (len(IDIOMES)+len(CONNECTEURS)+len(PERSUASION)+len(JURIDIQUE)+len(MATHS)
-         +len(FIGURES)+len(SYMPTOMES)+len(OUTILS_COACH)+len(PROTOCOLES)+len(remote_data))
+         +len(FIGURES)+len(SYMPTOMES)+len(OUTILS_COACH)+len(PROTOCOLES)
+         +len(TECHNIQUES_RECIT)+len(remote_data))
 st.sidebar.markdown("---")
 st.sidebar.metric("📦 Ressources totales", total)
 st.sidebar.markdown("---")
@@ -394,6 +492,80 @@ elif page == "discours":
               ("CLAUSULE","Dernier mot : 'souveraine'. Fort, mémorable, inattendu.","purple")]
     for a_titre,a_detail,a_col in annots:
         card(a_col,"🔬",a_titre,"TECHNIQUE",a_detail)
+
+elif page == "storytelling":
+    sh("🎙️","Storytelling Professionnel","Transformer un rapport technique en récit qui marque les esprits","story-header")
+
+    st.markdown("""<div class="key-box">
+        <h3 style="color:#F5DEB3;margin-top:0;">🧠 Pourquoi le Storytelling ?</h3>
+        <p style="color:#EDE0C8;line-height:1.8;">Les données informent. Les histoires convainquent. Un ingénieur qui sait raconter une intervention technique comme un récit structuré multiplie par 3 son impact en réunion, en présentation ou en entretien. Le storytelling n'est pas une option — c'est un levier de leadership.</p>
+    </div>""", unsafe_allow_html=True)
+
+    st.markdown("### 🛠️ Les 6 Techniques Fondamentales")
+    for t in TECHNIQUES_RECIT:
+        col = t["col"]
+        st.markdown(f"""<div class="card card-{col}">
+            <div class="cat-tag cat-tag-{col}">{t['icone']} TECHNIQUE {t['num']}</div>
+            <h3 class="card-title">{t['titre']}</h3>
+            <p class="sens-text">{t['description']}</p>
+            <div class="before-after">
+                <div class="before-box">❌ <b>Avant :</b><br>{t['avant']}</div>
+                <div class="after-box">✅ <b>Après :</b><br>{t['apres']}</div>
+            </div>
+            <div class="tip-box" style="margin-top:10px;font-size:0.88em;">💡 {t['conseil']}</div>
+        </div>""", unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 📜 Récit Modèle Annoté — Cas Réel")
+    st.markdown(f"""<div class="discourse-card">
+        <h3 style="color:#F5DEB3;">{RECIT_MODELE['titre']}</h3>
+        <p style="color:#A08040;font-size:0.85em;margin-bottom:22px;">📌 Récit d'intervention terrain structuré selon les 6 techniques. Chaque bloc est annoté.</p>
+
+        <div style="background:rgba(180,144,0,0.1);border-left:3px solid #B8860B;padding:14px 18px;border-radius:8px;margin-bottom:18px;">
+            <p style="color:#A08040;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">🪝 ACCROCHE — Crochet d'Ouverture</p>
+            <p class="discourse-body" style="margin:0;">{RECIT_MODELE['accroche']}</p>
+        </div>
+
+        <div style="background:rgba(220,38,38,0.08);border-left:3px solid #DC2626;padding:14px 18px;border-radius:8px;margin-bottom:18px;">
+            <p style="color:#991B1B;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">🔴 {RECIT_MODELE['probleme']['titre']} — {RECIT_MODELE['probleme']['technique']}</p>
+            <p class="discourse-body" style="margin:0;">{RECIT_MODELE['probleme']['corps']}</p>
+        </div>
+
+        <div style="background:rgba(14,116,144,0.08);border-left:3px solid #0E7490;padding:14px 18px;border-radius:8px;margin-bottom:18px;">
+            <p style="color:#0E7490;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 12px;">⚙️ {RECIT_MODELE['action']['titre']} — {RECIT_MODELE['action']['technique']}</p>
+            {''.join([f"<p class='discourse-body' style='margin:0 0 8px;'><b>{a[0]}</b> : {a[1]}</p>" for a in RECIT_MODELE['action']['corps']])}
+        </div>
+
+        <div style="background:rgba(26,107,58,0.08);border-left:3px solid #1A6B3A;padding:14px 18px;border-radius:8px;margin-bottom:18px;">
+            <p style="color:#1A6B3A;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">🟢 {RECIT_MODELE['lecon']['titre']} — {RECIT_MODELE['lecon']['technique']}</p>
+            <p class="discourse-body" style="margin:0;">{RECIT_MODELE['lecon']['corps']}</p>
+        </div>
+
+        <div style="background:rgba(91,45,142,0.1);border-left:3px solid #5B2D8E;padding:14px 18px;border-radius:8px;">
+            <p style="color:#5B2D8E;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">🚀 APPEL À L'ACTION</p>
+            <p class="discourse-body" style="margin:0;font-style:italic;">{RECIT_MODELE['appel']}</p>
+        </div>
+    </div>""", unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### ✅ Checklist du Récit Parfait")
+    checks = [
+        ("🪝","Mon accroche est une question ou une image forte","Pas de démarrage plat ou factuel"),
+        ("📐","J'ai structuré en 3 points clairs","Problème / Action / Leçon"),
+        ("🎨","J'ai remplacé le jargon par des images accessibles","L'auditeur non-expert comprend"),
+        ("🎯","Mon message central tient en une phrase","Gravé dans l'esprit dès la fin"),
+        ("⚡","Toutes mes phrases sont à la voix active","Mon leadership est visible"),
+        ("🚀","Je conclus par une invitation à agir","Pas par une observation générale"),
+    ]
+    c1, c2 = st.columns(2)
+    for i, (icone, check, sous) in enumerate(checks):
+        col_ui = c1 if i % 2 == 0 else c2
+        with col_ui:
+            st.markdown(f"""<div class="card card-purple" style="padding:16px 20px;margin-bottom:12px;">
+                <div style="font-size:1.6em;margin-bottom:6px;">{icone}</div>
+                <p style="font-weight:600;color:#1a1a2e;margin:0 0 4px;">{check}</p>
+                <p style="color:#6B7280;font-size:0.85em;margin:0;">{sous}</p>
+            </div>""", unsafe_allow_html=True)
 
 elif page == "biblio":
     sh("📚","Bibliothèque des Maîtres","Les ouvrages fondamentaux pour maîtriser l'art de convaincre")
